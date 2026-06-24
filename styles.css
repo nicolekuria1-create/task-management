@@ -1,0 +1,177 @@
+:root {
+  --bg-1: #f4f6ef;
+  --bg-2: #ecf0dc;
+  --ink: #13211e;
+  --accent: #ff6b35;
+  --accent-2: #2f7f6d;
+  --panel: rgba(255, 255, 255, 0.74);
+  --border: rgba(19, 33, 30, 0.15);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Space Grotesk", sans-serif;
+  color: var(--ink);
+  background: linear-gradient(135deg, var(--bg-1), var(--bg-2));
+  overflow-x: hidden;
+}
+
+.background-orb {
+  position: fixed;
+  width: 40rem;
+  height: 40rem;
+  border-radius: 999px;
+  filter: blur(70px);
+  opacity: 0.55;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.orb-one {
+  background: #ffe66d;
+  top: -10rem;
+  left: -8rem;
+}
+
+.orb-two {
+  background: #4ecdc4;
+  bottom: -14rem;
+  right: -8rem;
+}
+
+.shell {
+  position: relative;
+  z-index: 1;
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 4rem 1.25rem 2rem;
+}
+
+.hero {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(12px);
+  border-radius: 1.25rem;
+  padding: 2.25rem;
+  animation: rise 700ms ease-out both;
+}
+
+.eyebrow {
+  margin: 0;
+  font-family: "IBM Plex Mono", monospace;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-2);
+}
+
+h1 {
+  margin: 0.7rem 0;
+  font-size: clamp(2rem, 6vw, 3.7rem);
+  line-height: 1.05;
+}
+
+.subtitle {
+  margin: 0;
+  max-width: 44ch;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.cta-row {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  margin-top: 1.4rem;
+}
+
+.btn {
+  text-decoration: none;
+  border-radius: 999px;
+  padding: 0.75rem 1.2rem;
+  font-weight: 700;
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #ffffff;
+  box-shadow: 0 10px 18px rgba(255, 107, 53, 0.25);
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 1px solid var(--ink);
+  color: var(--ink);
+}
+
+.grid {
+  margin-top: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  padding: 1.1rem;
+  animation: rise 700ms ease-out both;
+}
+
+.card:nth-child(2) {
+  animation-delay: 90ms;
+}
+
+.card:nth-child(3) {
+  animation-delay: 180ms;
+}
+
+.card h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1.15rem;
+}
+
+.card p,
+.footer p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.footer {
+  margin-top: 1.25rem;
+  text-align: center;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.92rem;
+  opacity: 0.85;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    padding: 1.5rem;
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
