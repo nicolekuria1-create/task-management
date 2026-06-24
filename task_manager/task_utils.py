@@ -1,15 +1,28 @@
 """Utility functions for task operations."""
 
-from task_manager.validation import validate_task_index, validate_task_name
+from task_manager.validation import (
+    validate_due_date,
+    validate_task_description,
+    validate_task_index,
+    validate_task_name,
+)
 
 
-def add_task(tasks, task_name):
+def add_task(tasks, task_name, task_description="", due_date=""):
     """Add a new pending task to the list."""
     if not validate_task_name(task_name):
         return False
 
+    if not validate_task_description(task_description):
+        return False
+
+    if not validate_due_date(due_date):
+        return False
+
     task = {
         "name": task_name.strip(),
+        "description": task_description.strip(),
+        "due_date": due_date.strip(),
         "completed": False,
     }
     tasks.append(task)

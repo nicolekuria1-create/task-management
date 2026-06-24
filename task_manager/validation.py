@@ -1,5 +1,7 @@
 """Validation helpers for the task management system."""
 
+from datetime import datetime
+
 
 def validate_task_name(task_name):
     """Return True when task name is a non-empty string after trimming spaces."""
@@ -7,6 +9,30 @@ def validate_task_name(task_name):
         return False
     if len(task_name.strip()) == 0:
         return False
+    return True
+
+
+def validate_task_description(task_description):
+    """Return True when task description is a non-empty string."""
+    if not isinstance(task_description, str):
+        return False
+    if len(task_description.strip()) == 0:
+        return False
+    return True
+
+
+def validate_due_date(due_date):
+    """Return True when due_date is in YYYY-MM-DD format."""
+    if not isinstance(due_date, str):
+        return False
+    if len(due_date.strip()) == 0:
+        return False
+
+    try:
+        datetime.strptime(due_date.strip(), "%Y-%m-%d")
+    except ValueError:
+        return False
+
     return True
 
 

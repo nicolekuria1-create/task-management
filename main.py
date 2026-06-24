@@ -26,7 +26,7 @@ def display_all_tasks(tasks):
 
     for index, task in enumerate(tasks, start=1):
         status = "Completed" if task["completed"] else "Pending"
-        print(f"{index}. {task['name']} - {status}")
+        print(f"{index}. {task['name']} (Due: {task['due_date']}) - {status}")
 
 
 def run_task_manager():
@@ -39,10 +39,15 @@ def run_task_manager():
 
         if choice == "1":
             task_name = input("Enter task name: ")
-            if add_task(tasks, task_name):
-                print("Task added successfully")
+            task_description = input("Enter task description: ")
+            due_date = input("Enter due date (YYYY-MM-DD): ")
+
+            if add_task(tasks, task_name, task_description, due_date):
+                print("Task added successfully!")
             else:
-                print("Invalid task name. Please enter a non-empty value.")
+                print(
+                    "Invalid task data. Ensure name/description are not empty and due date is YYYY-MM-DD."
+                )
 
         elif choice == "2":
             if len(tasks) == 0:
@@ -52,13 +57,14 @@ def run_task_manager():
             display_all_tasks(tasks)
             task_number_input = input("Enter task number to mark complete: ").strip()
 
-            if not task_number_input.isdigit():
+            try:
+                task_number = int(task_number_input)
+            except ValueError:
                 print("Invalid task number.")
                 continue
 
-            task_number = int(task_number_input)
             if mark_task_complete(tasks, task_number):
-                print("Task marked as complete")
+                print("Task marked as complete!")
             else:
                 print("Task number out of range.")
 
